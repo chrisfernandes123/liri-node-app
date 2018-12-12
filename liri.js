@@ -19,14 +19,16 @@ function runLiri(command, inputParam) {
     axios.get("https://rest.bandsintown.com/artists/" + inputParam + "/events?app_id=codingbootcamp").then(
       function (response) {
 
-        response.data.forEach(function (data) {
+       
 
-          console.log('Venue Name: ' + data.venue.name);
-          console.log('Venue Location: ' + data.venue.city + ', ' + data.venue.country);
-          console.log('Date of Event: ' + moment(data.datetime).format("MM-DD-YYYY"));
+        response.data.forEach(function (value) {
+
+          console.log('Venue Name: ' + value.venue.name);
+          console.log('Venue Location: ' + value.venue.city + ', ' + value.venue.country);
+          console.log('Date of Event: ' + moment(value.datetime).format("MM-DD-YYYY"));
           console.log('--------------------');
 
-        });
+       });
 
 
       },
@@ -198,8 +200,7 @@ process.argv.forEach(function(value,index){
 
 });
 
-
-console.log(inputParam);
+inputParam = inputParam.trim();
 
 runLiri(command, inputParam);
 
